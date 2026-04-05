@@ -46,10 +46,30 @@ curl -fsSL https://raw.githubusercontent.com/uton88/dan-binary-releases/main/ins
   --threads 68
 ```
 
+Linux or macOS with proxy:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/uton88/dan-binary-releases/main/install.sh | bash -s -- \
+  --install-dir "$HOME/dan-runtime" \
+  --background \
+  --default-proxy 'socks5://user:pass@127.0.0.1:1080' \
+  --cpa-base-url 'https://gpt-up.example.com/' \
+  --cpa-token 'replace-me' \
+  --mail-api-url 'https://gpt-mail.example.com/' \
+  --mail-api-key 'replace-me' \
+  --threads 68
+```
+
 Windows PowerShell:
 
 ```powershell
 $p = Join-Path $env:TEMP 'dan-install.ps1'; Invoke-WebRequest 'https://raw.githubusercontent.com/uton88/dan-binary-releases/main/install.ps1' -OutFile $p; & $p -CpaBaseUrl 'https://gpt-up.example.com/' -CpaToken 'replace-me' -MailApiUrl 'https://gpt-mail.example.com/' -MailApiKey 'replace-me' -Threads 68
+```
+
+Windows PowerShell with proxy:
+
+```powershell
+$p = Join-Path $env:TEMP 'dan-install.ps1'; Invoke-WebRequest 'https://raw.githubusercontent.com/uton88/dan-binary-releases/main/install.ps1' -OutFile $p; & $p -DefaultProxy 'socks5://user:pass@127.0.0.1:1080' -CpaBaseUrl 'https://gpt-up.example.com/' -CpaToken 'replace-me' -MailApiUrl 'https://gpt-mail.example.com/' -MailApiKey 'replace-me' -Threads 68
 ```
 
 ## Default behavior
@@ -59,6 +79,7 @@ $p = Join-Path $env:TEMP 'dan-install.ps1'; Invoke-WebRequest 'https://raw.githu
 - writes `config.json`
 - writes `config/web_config.json`
 - keeps the domain list and other defaults from the bundled example
+- if `default_proxy` is provided, the installer automatically writes `use_registration_proxy=true`
 
 ## Optional parameters
 
@@ -75,6 +96,7 @@ Linux or macOS installer flags:
 - `--web-token linuxdo`
 - `--client-api-token linuxdo`
 - `--port 25666`
+- `--default-proxy URL`
 - `--systemd`
 - `--service-name dan-web`
 - `--background`
@@ -94,6 +116,14 @@ Windows installer parameters match the same fields:
 - `-WebToken`
 - `-ClientApiToken`
 - `-Port`
+- `-DefaultProxy`
+
+Supported proxy URL schemes:
+
+- `http://host:port`
+- `https://host:port`
+- `socks5://host:port`
+- `socks5h://host:port`
 
 ## Release assets
 
