@@ -112,3 +112,9 @@ The release publishes these binaries:
 
 - [config.json.example](./examples/config.json.example)
 - [web_config.json.example](./examples/web_config.json.example)
+
+## Current published version
+
+- latest tag: `v0.1.10`
+- source repository: `https://github.com/uton88/OAI-REG-WEB-GO/releases/tag/v0.1.10`
+- public binary release: `https://github.com/uton88/dan-binary-releases/releases/tag/v0.1.10`
